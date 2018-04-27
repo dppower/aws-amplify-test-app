@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from "@angular/router";
 import { NgModule } from '@angular/core';
 
-import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+import { AwsAuthModule } from "./aws-auth/aws-auth.module";
 
 import { AppComponent } from './app.component';
 
@@ -11,7 +12,15 @@ import { AppComponent } from './app.component';
         AppComponent
     ],
     imports: [
-        BrowserModule
+        BrowserModule,
+        AwsAuthModule,
+        RouterModule.forRoot([
+            {
+                path: "",
+                pathMatch: "full",
+                redirectTo: "/auth"
+            }
+        ])    
     ],
     providers: [],
     bootstrap: [AppComponent]
