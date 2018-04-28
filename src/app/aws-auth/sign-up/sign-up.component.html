@@ -1,5 +1,5 @@
 <p>Sign Up</p>
-<form [formGroup]="form_group">
+<form [formGroup]="form_group" (ngSubmit)="submitSignUpDetails()">
     <label>Username: 
         <input formControlName="username">
     </label>
@@ -12,4 +12,5 @@
     <label>Email: 
         <input formControlName="email">
     </label>
+    <button type="submit" [disabled]="!form_group.valid">Sign Up!</button>
 </form>

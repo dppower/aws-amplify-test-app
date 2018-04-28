@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from "@angular/forms";
+import { AwsAuthService } from "../aws-auth.service";
 
 interface SignUpDetails {
     username: string;
@@ -23,7 +24,7 @@ export class SignUpComponent implements OnInit {
 
     form_group: FormGroup;
 
-    constructor() { };
+    constructor(private auth_service_: AwsAuthService) { };
 
     ngOnInit() {
         this.form_group = new FormGroup({
@@ -35,9 +36,22 @@ export class SignUpComponent implements OnInit {
 
         this.form_group.get("confirm_password").setValidators([Validators.required, this.confirmPasswordValidation()]);
 
-        this.form_group.valueChanges.subscribe(details => {
-            console.log(details);
-        });
+        // this.form_group.valueChanges.subscribe(details => {
+        //     console.log(details);
+        // });
+    };
+
+    submitSignUpDetails() {
+        let details: SignUpDetails = this.form_group.value;
+        this.auth_service_.signUp(details.username, details.password, details.email)
+        .then(() => {
+            console.log("Added user to cognito pools.");
+            this.form_group.reset();
+        })
+        .catch(err => {
+            console.log(`sign up err: ${JSON.stringify(err)}.`);
+        })
+
     };
 
     passwordValidation(): ValidatorFn {

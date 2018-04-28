@@ -34,6 +34,10 @@ export class AwsAuthService {
         Amplify.configure(auth_config);
         this.auth_ = Auth;
         this.checkUser();
+
+        this.auth_state_changes.subscribe((change) => {
+            console.log(`user: ${JSON.stringify(change.user)}, state: ${change.state}.`)
+        });
     };
 
     private checkUser() {
@@ -71,7 +75,7 @@ export class AwsAuthService {
             attributes: {
                 email
             }
-        })
+        });
     };
 
     async confirmSignUp() {

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from "@angular/router";
+import { RouterModule, Router } from "@angular/router";
 import { NgModule } from '@angular/core';
 
 import { AwsAuthModule } from "./aws-auth/aws-auth.module";
@@ -12,17 +12,22 @@ import { AppComponent } from './app.component';
         AppComponent
     ],
     imports: [
-        BrowserModule,
-        AwsAuthModule,
+        BrowserModule,       
         RouterModule.forRoot([
             {
                 path: "",
-                pathMatch: "full",
-                redirectTo: "/auth"
+                redirectTo: "/auth",
+                pathMatch: "full"               
             }
-        ])    
+        ], { enableTracing: true }),
+        AwsAuthModule
     ],
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+    constructor(router: Router) {
+        console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    };
+}
