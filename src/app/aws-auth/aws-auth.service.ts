@@ -54,6 +54,8 @@ export class AwsAuthService {
     async signIn(username: string, password: string) {
         let user = await this.auth_.signIn(username, password);
 
+        console.log(user);
+        //console.log(`user: ${JSON.stringify(user)}.`);
         if (user.challengeName) {
             console.log(user.challengeName);
         }

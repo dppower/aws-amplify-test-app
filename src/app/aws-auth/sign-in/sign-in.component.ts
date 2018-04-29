@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AwsAuthService } from '../aws-auth.service';
 
 @Component({
     selector: 'auth-sign-in',
@@ -10,12 +11,25 @@ export class SignInComponent implements OnInit {
 
     form_group: FormGroup;
 
-    constructor() { };
+    constructor(private auth_service_: AwsAuthService) { };
 
     ngOnInit() {
         this.form_group = new FormGroup({
-            username: new FormControl(""),
-            password: new FormControl("")
+            username: new FormControl("", Validators.required),
+            password: new FormControl("", [Validators.required, Validators.minLength(8)])
         });
     };
+
+    submitSignInDetails() {
+        let details = this.form_group.value;
+        this.auth_service_.signIn(details.username, details.password)
+        .then(() => {
+            console.log("Signed user into cognito pools.");
+            this.form_group.reset();
+        })
+        .catch(err => {
+            console.log(`sign in err: ${JSON.stringify(err)}.`);
+        });
+    };
+
 }

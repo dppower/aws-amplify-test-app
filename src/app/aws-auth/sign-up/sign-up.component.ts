@@ -50,7 +50,7 @@ export class SignUpComponent implements OnInit {
         })
         .catch(err => {
             console.log(`sign up err: ${JSON.stringify(err)}.`);
-        })
+        });
 
     };
 

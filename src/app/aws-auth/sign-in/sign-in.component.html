@@ -1,9 +1,10 @@
 <p>Sign In</p>
-<form [formGroup]="form_group">
-    <label>Username: 
-        <input>
+<form [formGroup]="form_group" (ngSubmit)="submitSignInDetails()">
+    <label>Username:
+        <input formControlName="username">
     </label>
     <label>Password:
-        <input>
+        <input type="password" formControlName="password">
     </label>
+    <button type="submit" [disabled]="!form_group.valid">Sign In!</button>
 </form>

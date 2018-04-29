@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
         RouterModule.forRoot([
             {
                 path: "",
-                redirectTo: "/auth",
+                redirectTo: "/sign-in",
                 pathMatch: "full"               
             }
         ], { enableTracing: true }),

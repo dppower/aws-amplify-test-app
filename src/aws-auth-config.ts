@@ -15,11 +15,11 @@ export default {
         // OPTIONAL - Configuration for cookie storage
         // cookieStorage: {
         //     // REQUIRED - Cookie domain (only required if cookieStorage is provided)
-        //     domain: "localhost",
+        //     domain: ".yourdomain.com",
         //     // OPTIONAL - Cookie path
         //     path: '/',
         //     // OPTIONAL - Cookie expiration in days
-        //     expires: 7,
+        //     expires: 1,
         //     // OPTIONAL - Cookie secure flag
         //     secure: true
         // }
