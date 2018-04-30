@@ -70,9 +70,9 @@ export class AwsAuthService {
 
     };
 
-    async signUp(username: string, password: string, email: string) {
+    async signUp(email: string, password: string) {
         await this.auth_.signUp({
-            username,
+            username: email,
             password,
             attributes: {
                 email
@@ -80,7 +80,8 @@ export class AwsAuthService {
         });
     };
 
-    async confirmSignUp() {
+    async confirmSignUp(email: string, code: string) {
         // Verification by email or SMS
+        await this.auth_.confirmSignUp(email, code);
     };
 }

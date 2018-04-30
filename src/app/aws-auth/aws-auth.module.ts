@@ -5,7 +5,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AwsAuthRoutingModule } from './aws-auth-routing.module';
 import { AwsAuthService } from './aws-auth.service';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { ConfirmSignInComponent } from './sign-in/confirm-sign-in.component';
+import { ConfirmSignUpComponent } from './sign-up/confirm-sign-up.component';
+import { AuthTestComponent } from './auth-test/auth-test.component';
+import { RegisterDetailsComponent } from './sign-up/register-details.component';
+import { AuthFormComponent } from './auth-form/auth-form.component';
 
 @NgModule({
     imports: [
@@ -13,7 +17,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
         AwsAuthRoutingModule,
         ReactiveFormsModule
     ],
-    declarations: [SignInComponent, SignUpComponent],
+    declarations: [SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent, RegisterDetailsComponent, AuthFormComponent],
     providers: [AwsAuthService]
 })
 export class AwsAuthModule { }

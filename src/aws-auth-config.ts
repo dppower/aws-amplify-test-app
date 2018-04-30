@@ -7,9 +7,9 @@ export default {
         // REQUIRED - Amazon Cognito Region
         region: "us-east-2",
         // OPTIONAL - Amazon Cognito User Pool ID
-        userPoolId: "us-east-2_9Eav2mU8U",
+        userPoolId: "us-east-2_kN6x1gbf2",
         // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-        userPoolWebClientId: "2aqbj39imegl7pd42kq5cqp7m0",
+        userPoolWebClientId: "129llepsshnsdgvl5fstctvra0",
         // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
         mandatorySignIn: true,
         // OPTIONAL - Configuration for cookie storage

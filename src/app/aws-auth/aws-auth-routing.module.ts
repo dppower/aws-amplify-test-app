@@ -1,28 +1,49 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthTestComponent } from './auth-test/auth-test.component';
+import { AuthGuardService } from './auth-guard.service';
+
 import { SignInComponent } from "./sign-in/sign-in.component";
-import { SignUpComponent } from "./sign-up/sign-up.component";
+import { ConfirmSignInComponent } from './sign-in/confirm-sign-in.component';
+
+import { RegisterDetailsComponent } from "./sign-up/register-details.component";
+import { ConfirmSignUpComponent } from './sign-up/confirm-sign-up.component';
+import { AuthFormComponent } from './auth-form/auth-form.component';
 
 const routes: Routes = [   
     {
-        path: "auth",
-        redirectTo: "/sign-up"
-    },            
-    {
-        path: "sign-in",
-        component: SignInComponent
+        path: "auth-test",
+        component: AuthTestComponent,
+        canActivate: [AuthGuardService]
     },
     {
-        path: "sign-up",
-        component: SignUpComponent
-    }
-    // {
-    //     path: "confirm-sign-in"
-    // },
-    // {
-    //     path: "confirm-sign-up"
-    // },
+        path: "auth",
+        component: AuthFormComponent,
+        children: [
+            {
+                path: "confirm",
+                component: ConfirmSignUpComponent
+            },
+            {
+                path: "register",
+                component: RegisterDetailsComponent
+            },                       
+            {
+                path: "sign-in",
+                component: SignInComponent
+            },
+            {
+                path: "",
+                redirectTo: "sign-in",
+                pathMatch: "full"
+            }
+        ]
+    },
+    {
+        path: "confirm-sign-in",
+        component: ConfirmSignInComponent
+    }    
     // {
     //     path: "forgot-password"
     // },
@@ -33,6 +54,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
+    providers: [AuthGuardService],
     exports: [RouterModule]
 })
 export class AwsAuthRoutingModule { }

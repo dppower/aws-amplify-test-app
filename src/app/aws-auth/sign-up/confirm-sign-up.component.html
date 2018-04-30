@@ -1,0 +1,10 @@
+<div>
+    <label for="email-input">Email:</label>
+    <input id="email-input" formControlName="email">
+</div>
+<div>
+    <label for="email-verification-input">Code:</label>
+    <input id="email-verification-input" formControlName="email_verification">
+    <p>Enter the 6-digit code that is received by email.</p>
+</div>
+<button type="submit" [disabled]="!areInputsValid()">Confirm</button>

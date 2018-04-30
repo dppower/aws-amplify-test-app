@@ -6,6 +6,8 @@
     <label for="password-input">Password:</label>
     <input id="password-input" type="password" formControlName="password">
 </div>
-<button type="submit" [disabled]="!form_group.valid">Sign In</button>
-<button (click)="navigateToSignUp()">Create New Account</button>
-<button (click)="navigateToForgotPassword()">Forgot Password</button>
+<div>
+    <label for="confirm-password-input">Confirm Password:</label>
+    <input id="confirm-password-input" type="password" formControlName="confirm_password">
+</div>
+<button type="submit" [disabled]="!form_group.valid">Sign Up!</button>
