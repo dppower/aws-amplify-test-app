@@ -1,3 +1,7 @@
-<p>
-  auth-test works!
-</p>
+<p>Auth-test works!</p>
+<input #title type="text">
+<button (click)="createPost(title.value)">Create Post</button>
+<p>{{post_response | json}}</p>
+<input #id>
+<button (click)="getPost(id.value)">Get Post</button>
+<p>{{get_response | json}}</p>
