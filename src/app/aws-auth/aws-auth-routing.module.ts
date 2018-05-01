@@ -10,6 +10,8 @@ import { ConfirmSignInComponent } from './sign-in/confirm-sign-in.component';
 import { RegisterDetailsComponent } from "./sign-up/register-details.component";
 import { ConfirmSignUpComponent } from './sign-up/confirm-sign-up.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
+import { ForgotPasswordComponent } from './password-reset/forgot-password.component';
+import { ChangePasswordComponent } from './password-reset/change-password.component';
 
 const routes: Routes = [   
     {
@@ -34,22 +36,24 @@ const routes: Routes = [
                 component: SignInComponent
             },
             {
+                path: "forgot",
+                component: ForgotPasswordComponent
+            },
+            {
+                path: "reset",
+                component: ChangePasswordComponent
+            },
+            {
+                path: "code",
+                component: ConfirmSignInComponent
+            },
+            {
                 path: "",
                 redirectTo: "sign-in",
                 pathMatch: "full"
             }
         ]
-    },
-    {
-        path: "confirm-sign-in",
-        component: ConfirmSignInComponent
-    }    
-    // {
-    //     path: "forgot-password"
-    // },
-    // {
-    //     path: "require-new-password"
-    // }  
+    } 
 ];
 
 @NgModule({

@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Auth } from "aws-amplify";
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { AwsAuthService } from "./aws-auth.service";
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-    constructor() { };
+    constructor(private router_: Router, private auth_service_: AwsAuthService) { };
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return Auth.currentSession().then(session => true).catch(err => false);
+        return this.auth_service_.auth.currentSession()
+        .then(session => {
+            return true;
+        })
+        .catch(err => {
+            this.router_.navigate(["/auth/sign-in"]);
+            return false
+        });
     };
 }

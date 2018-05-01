@@ -10,6 +10,8 @@ import { ConfirmSignUpComponent } from './sign-up/confirm-sign-up.component';
 import { AuthTestComponent } from './auth-test/auth-test.component';
 import { RegisterDetailsComponent } from './sign-up/register-details.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
+import { ForgotPasswordComponent } from './password-reset/forgot-password.component';
+import { ChangePasswordComponent } from './password-reset/change-password.component';
 
 @NgModule({
     imports: [
@@ -17,7 +19,7 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
         AwsAuthRoutingModule,
         ReactiveFormsModule
     ],
-    declarations: [SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent, RegisterDetailsComponent, AuthFormComponent],
+    declarations: [SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent, RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent],
     providers: [AwsAuthService]
 })
 export class AwsAuthModule { }

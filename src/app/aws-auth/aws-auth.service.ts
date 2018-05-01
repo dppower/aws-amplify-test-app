@@ -36,7 +36,7 @@ export class AwsAuthService {
         this.checkUser();
 
         this.auth_state_changes.subscribe((change) => {
-            console.log(`user: ${JSON.stringify(change.user)}, state: ${change.state}.`)
+            //console.log(`user: ${JSON.stringify(change.user)}, state: ${change.state}.`)
         });
     };
 
@@ -54,7 +54,7 @@ export class AwsAuthService {
     async signIn(username: string, password: string) {
         let user = await this.auth_.signIn(username, password);
 
-        console.log(user);
+        //console.log(user);
         //console.log(`user: ${JSON.stringify(user)}.`);
         if (user.challengeName) {
             console.log(user.challengeName);
