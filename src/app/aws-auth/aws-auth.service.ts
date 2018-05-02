@@ -67,7 +67,7 @@ export class AwsAuthService {
     };
 
     async signOut() {
-
+        await this.auth_.signOut();
     };
 
     async signUp(email: string, password: string) {

@@ -19,7 +19,10 @@ import { ChangePasswordComponent } from './password-reset/change-password.compon
         AwsAuthRoutingModule,
         ReactiveFormsModule
     ],
-    declarations: [SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent, RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent],
+    declarations: [
+        SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent,
+        RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent
+    ],
     providers: [AwsAuthService]
 })
 export class AwsAuthModule { }
