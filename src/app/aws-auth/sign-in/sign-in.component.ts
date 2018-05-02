@@ -5,6 +5,7 @@ import {
 } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AwsAuthService } from '../aws-auth.service';
+import authConfig from "../../../aws-auth-config";
 
 @Component({
     selector: 'auth-sign-in',
@@ -44,6 +45,17 @@ export class SignInComponent implements OnInit {
     };
 
     navigateToForgotPassword() {
-
+        this.router_.navigate(["../forgot"], { relativeTo: this.activated_route_ });
     };
+
+    navigateToChangePassword() {
+        this.router_.navigate(["../change"], { relativeTo: this.activated_route_ });
+    };
+
+    navigateToHostedUI() {
+        const { domain, redirectSignIn, redirectSignOut, responseType} = authConfig.Auth.oauth;
+        const clientId = authConfig.Auth.userPoolWebClientId;
+        const url = 'https://' + domain + '/login?redirect_uri=' + redirectSignIn + '&response_type=' + responseType + '&client_id=' + clientId;
+        window.location.assign(url);
+    }
 }

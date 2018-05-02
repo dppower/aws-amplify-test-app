@@ -44,14 +44,14 @@ export class AuthTestComponent implements OnInit {
             variables: {
                 id,
                 title
-            },
-            optimisticResponse: {
-                createPost: {
-                    __typename: "Post",
-                    title
-                }
-            },
-            fetchPolicy: "no-cache"
+            }
+            // optimisticResponse: {
+            //     createPost: {
+            //         __typename: "Post",
+            //         title
+            //     }
+            // },
+            // fetchPolicy: "no-cache"
         })
         .then(({data}) => {
             this.post_response = data;

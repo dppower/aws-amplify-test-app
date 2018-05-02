@@ -17,8 +17,8 @@ export class AwsAppSyncService {
             auth: {
                 type: config.authenticationType,
                 jwtToken: async() => (await this.auth_service_.auth.currentSession()).getIdToken().getJwtToken()
-            }
-            //disableOffline: true
+            },
+            disableOffline: true
         });
     };
 }

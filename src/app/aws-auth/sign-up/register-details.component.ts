@@ -25,21 +25,9 @@ export class RegisterDetailsComponent implements OnInit, OnDestroy {
     ) { };
 
     ngOnInit() {
-        // this.form_group = new FormGroup({
-        //     username: new FormControl("", Validators.required),
-        //     password: new FormControl("", [Validators.required, Validators.minLength(8), this.passwordValidation()]),
-        //     confirm_password: new FormControl(""),
-        //     email: new FormControl("", [Validators.required, Validators.email])
-        // });
         this.form_group = this.parent_form_directive_.form;
 
         this.form_group.addControl("confirm_password", new FormControl("", [Validators.required, this.confirmPasswordValidation()]));
-
-        //this.form_group.get("confirm_password").setValidators([Validators.required, this.confirmPasswordValidation()]);
-
-        // this.form_group.valueChanges.subscribe(details => {
-        //     console.log(details);
-        // });
     };
 
     confirmPasswordValidation(): ValidatorFn {

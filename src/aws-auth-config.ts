@@ -12,6 +12,14 @@ export default {
         userPoolWebClientId: "129llepsshnsdgvl5fstctvra0",
         // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
         mandatorySignIn: true,
+        // oAuth2
+        oauth: {
+            domain: "test-app-5875.auth.us-east-2.amazoncognito.com",
+            scope: ["email", "openid"],
+            redirectSignIn: "http://localhost:4200/auth-test",
+            redirectSignOut: "http://localhost:4200/auth/sign-in",
+            responseType: "code"
+        }
         // OPTIONAL - Configuration for cookie storage
         // cookieStorage: {
         //     // REQUIRED - Cookie domain (only required if cookieStorage is provided)

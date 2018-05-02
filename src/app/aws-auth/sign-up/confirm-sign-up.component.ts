@@ -5,6 +5,7 @@ import {
 } from "@angular/forms";
 import { AwsAuthService } from "../aws-auth.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { codeValidator } from '../validators/code-validator';
 
 @Component({
     selector: 'confirm-sign-up',
@@ -19,8 +20,6 @@ export class ConfirmSignUpComponent implements OnInit {
 
     form_group: FormGroup;
 
-    readonly six_digit_code = /\d{6}/;
-
     constructor(
         private parent_form_directive_: FormGroupDirective, private auth_service_: AwsAuthService,
         private router_: Router, private activated_route_: ActivatedRoute
@@ -31,23 +30,11 @@ export class ConfirmSignUpComponent implements OnInit {
     };
 
     ngOnInit() {
-        // this.form_group = new FormGroup({
-        //     username: new FormControl("", Validators.required),
-        //     password: new FormControl("", [Validators.required, Validators.minLength(8), this.passwordValidation()]),
-        //     confirm_password: new FormControl(""),
-        //     email: new FormControl("", [Validators.required, Validators.email])
-        // });
         this.form_group = this.parent_form_directive_.form;
 
         this.form_group.addControl("email_verification", 
-            new FormControl("", [Validators.required, Validators.pattern(this.six_digit_code)])
+            new FormControl("", [Validators.required, codeValidator])
         );
-
-        //this.form_group.get("confirm_password").setValidators([Validators.required, this.confirmPasswordValidation()]);
-
-        // this.form_group.valueChanges.subscribe(details => {
-        //     console.log(details);
-        // });
     };
 
     next() {
