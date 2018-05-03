@@ -7,7 +7,7 @@
     <input id="password-input" type="password" formControlName="password">
 </div>
 <button type="submit" [disabled]="!form_group.valid">Sign In</button>
-<button (click)="navigateToSignUp()">Create New Account</button>
-<button (click)="navigateToForgotPassword()">Forgot Password</button>
-<button (click)="navigateToChangePassword()">Change Password</button>
-<button (click)="navigateToHostedUI()">Continue With Google</button>
+<button type="button" (click)="navigateToSignUp()">Create New Account</button>
+<button type="button" (click)="navigateToForgotPassword()">Forgot Password</button>
+<button type="button" (click)="navigateToChangePassword()">Change Password</button>
+<button type="button" (click)="navigateToHostedUI()">Continue With Google</button>

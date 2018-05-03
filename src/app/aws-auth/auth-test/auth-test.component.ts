@@ -4,7 +4,7 @@ import { AwsAppSyncService } from "../../aws-appsync/aws-appsync.service";
 import getPostQuery, { GetPostResponse } from "../../graphql/queries/get-post";
 import createPostMutation, { CreatePostResponse } from "../../graphql/mutations/create-post";
 import { AwsAuthService } from '../aws-auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'auth-test',
@@ -19,10 +19,15 @@ export class AuthTestComponent implements OnInit {
     post_response: object;
 
     constructor(private app_sync_: AwsAppSyncService, private auth_service_: AwsAuthService,
-        private router_: Router
+        private router_: Router, private activated_route_: ActivatedRoute
     ) { };
 
     ngOnInit() {
+        let code = this.activated_route_.snapshot.queryParamMap.get("code");
+        if (code) {
+            console.log(`code: ${code}`);
+            this.router_.navigate(["/auth-test"]);
+        }
     };
 
     getPost(id: string) {
@@ -60,7 +65,7 @@ export class AuthTestComponent implements OnInit {
 
     signOut() {
         this.auth_service_.signOut().then(() => {
-            this.router_.navigate(["/auth/sign-in"]);
+            //this.router_.navigate(["/auth/sign-in"]);
         });
     };
 

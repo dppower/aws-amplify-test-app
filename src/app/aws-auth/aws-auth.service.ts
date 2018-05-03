@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { ReplaySubject } from "rxjs/ReplaySubject";
 
 import Amplify, { Auth, AuthClass } from "aws-amplify";
 import auth_config from "../../aws-auth-config";
@@ -17,16 +17,16 @@ export class AwsAuthService {
         return this.auth_;
     };
 
-    get auth_state() {
-        return this.auth_state_.getValue();
-    };
+    // get auth_state() {
+    //     return this.auth_state_.getValue();
+    // };
 
     set auth_state(state: AuthState) {
         this.auth_state_.next(state);
     };
 
     private auth_: AuthClass;
-    private auth_state_ = new BehaviorSubject<AuthState>({ state: "signed-out", user: null });
+    private auth_state_ = new ReplaySubject<AuthState>(1);
 
     readonly auth_state_changes = this.auth_state_.asObservable();
 
@@ -36,7 +36,7 @@ export class AwsAuthService {
         this.checkUser();
 
         this.auth_state_changes.subscribe((change) => {
-            //console.log(`user: ${JSON.stringify(change.user)}, state: ${change.state}.`)
+            console.log(`user: ${JSON.stringify(change.user && change.user.username)}, state: ${change.state}.`)
         });
     };
 

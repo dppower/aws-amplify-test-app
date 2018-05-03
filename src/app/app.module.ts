@@ -20,8 +20,11 @@ import { AppComponent } from './app.component';
                 redirectTo: "/auth-test",
                 pathMatch: "full"               
             }
-        ] 
-            //{ enableTracing: true }
+        ],
+            { 
+                enableTracing: true,
+                onSameUrlNavigation: "reload"
+            }
         ),
         AwsAuthModule,
         AwsAppSyncModule

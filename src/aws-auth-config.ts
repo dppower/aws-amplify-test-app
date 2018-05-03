@@ -17,7 +17,7 @@ export default {
             domain: "test-app-5875.auth.us-east-2.amazoncognito.com",
             scope: ["email", "openid"],
             redirectSignIn: "http://localhost:4200/auth-test",
-            redirectSignOut: "http://localhost:4200/auth/sign-in",
+            redirectSignOut: "http://localhost:4200/auth-test",
             responseType: "code"
         }
         // OPTIONAL - Configuration for cookie storage
