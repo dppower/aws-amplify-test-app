@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Router } from "@angular/router";
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from "@angular/common/http"
 
 import { AwsAuthModule } from "./aws-auth/aws-auth.module";
 import { AwsAppSyncModule } from "./aws-appsync/aws-appsync.module";
 
 import { AppComponent } from './app.component';
+import { ApolloClientModule } from './apollo-client/apollo-client.module';
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { AppComponent } from './app.component';
         AppComponent
     ],
     imports: [
-        BrowserModule,       
+        BrowserModule,
+        HttpClientModule,      
         RouterModule.forRoot([
             {
                 path: "",
@@ -27,7 +30,8 @@ import { AppComponent } from './app.component';
             }
         ),
         AwsAuthModule,
-        AwsAppSyncModule
+        //AwsAppSyncModule
+        ApolloClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
