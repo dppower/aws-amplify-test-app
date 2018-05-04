@@ -23,6 +23,7 @@
         "@angular/router": "^5.2.0",
         "apollo-angular": "^1.0.1",
         "apollo-angular-link-http": "^1.0.3",
+        "apollo-cache-persist": "^0.1.1",
         "aws-amplify": "^0.3.3",
         "aws-amplify-angular": "^0.1.0",
         "aws-appsync": "^1.0.17",

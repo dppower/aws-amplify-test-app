@@ -54,6 +54,7 @@ export class AuthTestComponent implements OnInit {
             }
         }).valueChanges.subscribe(({data}) => {
             this.get_response = data;
+            this.apollo_service_.saveCache();
         })
     };
 
