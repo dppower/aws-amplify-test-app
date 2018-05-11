@@ -1,8 +1,9 @@
 <p>Auth-test works!</p>
-<input #title type="text">
-<button (click)="createPost(title.value)">Create Post</button>
-<p>{{post_response | json}}</p>
-<input #id>
-<button (click)="getPost(id.value)">Get Post</button>
-<p>{{get_response | json}}</p>
+<form [formGroup]="qr_data_form_group" (ngSubmit)="submitData()">
+    <label for="name-input">Name:</label>
+    <input id="name-input" formControlName="name">
+    <input type="file" accept="image/png,image/jpeg">
+    <button type="button" (click)="uploadImage()">Upload</button>
+    <button type="submit">Submit</button>
+</form>
 <button (click)="signOut()">Sign Out</button>

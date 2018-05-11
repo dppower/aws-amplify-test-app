@@ -7,7 +7,7 @@ import { AwsAuthModule } from "./aws-auth/aws-auth.module";
 import { AwsAppSyncModule } from "./aws-appsync/aws-appsync.module";
 
 import { AppComponent } from './app.component';
-import { ApolloClientModule } from './apollo-client/apollo-client.module';
+//import { ApolloClientModule } from './apollo-client/apollo-client.module';
 
 
 @NgModule({
@@ -25,13 +25,13 @@ import { ApolloClientModule } from './apollo-client/apollo-client.module';
             }
         ],
             { 
-                enableTracing: true,
+                //enableTracing: true,
                 onSameUrlNavigation: "reload"
             }
         ),
         AwsAuthModule,
-        //AwsAppSyncModule
-        ApolloClientModule
+        AwsAppSyncModule
+        //ApolloClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]

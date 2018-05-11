@@ -30,8 +30,8 @@ export class ApolloClientService {
         const cache = new InMemoryCache();
         this.cache_persistor_ = new CachePersistor({
             cache,
-            storage: window.localStorage,
-            trigger: this.trigger
+            storage: window.localStorage
+            //trigger: this.trigger
         });
         await this.cache_persistor_.restore();
 

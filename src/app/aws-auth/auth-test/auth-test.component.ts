@@ -5,7 +5,8 @@ import getPostQuery, { GetPostResponse } from "../../graphql/queries/get-post";
 import createPostMutation, { CreatePostResponse } from "../../graphql/mutations/create-post";
 import { AwsAuthService } from '../aws-auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApolloClientService } from '../../apollo-client/apollo-client.service';
+import { Storage } from 'aws-amplify';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'auth-test',
@@ -14,52 +15,59 @@ import { ApolloClientService } from '../../apollo-client/apollo-client.service';
 })
 export class AuthTestComponent implements OnInit {
 
-    id = 237;
+    id: string;
+
+    qr_data_form_group: FormGroup;
 
     get_response: GetPostResponse;
     post_response: object;
 
-    constructor(//private app_sync_: AwsAppSyncService, 
-        private auth_service_: AwsAuthService, private apollo_service_: ApolloClientService,
+    constructor(
+        private auth_service_: AwsAuthService, private app_sync_: AwsAppSyncService, 
         private router_: Router, private activated_route_: ActivatedRoute
-    ) { };
+    ) { 
+        
+    };
 
     ngOnInit() {
-        let code = this.activated_route_.snapshot.queryParamMap.get("code");
-        if (code) {
-            console.log(`code: ${code}`);
-            this.router_.navigate(["/auth-test"]);
-        }
-
-        this.apollo_service_.setupClient()
-        .then(() => console.log(`apollo client setup`))
-        .catch(err => console.log(`apollo client err: ${err}.`));
+        this.qr_data_form_group = new FormGroup({
+            name: new FormControl("")
+        });
+        
+        this.auth_service_.auth.currentAuthenticatedUser().then(user => {
+            this.id = user.username;
+        });
     };
 
     getPost(id: string) {
-        // this.app_sync_.client.watchQuery<GetPostResponse>({
-        //     query: getPostQuery,
-        //     variables: {
-        //         id
-        //     }
-        // })
-        // .subscribe(({ data }) => {
-        //     this.get_response = data;
-        // });
-
-        this.apollo_service_.client.watchQuery<GetPostResponse>({
+        this.app_sync_.client.watchQuery<GetPostResponse>({
             query: getPostQuery,
             variables: {
                 id
             }
-        }).valueChanges.subscribe(({data}) => {
-            this.get_response = data;
-            this.apollo_service_.saveCache();
         })
+        .subscribe(({ data }) => {
+            this.get_response = data;
+        });
+
+        // this.apollo_service_.client.watchQuery<GetPostResponse>({
+        //     query: getPostQuery,
+        //     variables: {
+        //         id
+        //     }
+        // }).valueChanges.subscribe(({data}) => {
+        //     this.get_response = data;
+        //     //this.apollo_service_.saveCache();
+        // });
     };
 
-    createPost(title: string) {
-        let id = this.id++;
+    uploadImage() {
+        Storage.put('test.txt', 'Hello')
+            .then (result => console.log(result))
+            .catch(err => console.log(err));
+    };
+
+    createData(name: string) {
         // this.app_sync_.client.mutate<CreatePostResponse>({
         //     mutation: createPostMutation,           
         //     variables: {
@@ -77,20 +85,24 @@ export class AuthTestComponent implements OnInit {
         // .then(({data}) => {
         //     this.post_response = data;
         // });
-        this.apollo_service_.client.mutate<CreatePostResponse>({
-            mutation: createPostMutation,
-            variables: {
-                id,
-                title
-            }
-        }).subscribe(({data}) => {
-            this.post_response = data;
-        })
+        // this.apollo_service_.client.mutate<CreatePostResponse>({
+        //     mutation: createPostMutation,
+        //     variables: {
+        //         id,
+        //         title
+        //     }
+        // }).subscribe(({data}) => {
+        //     this.post_response = data;
+        // });
+    };
+
+    submitData() {
+
     };
 
     signOut() {
         this.auth_service_.signOut().then(() => {
-            //this.router_.navigate(["/auth/sign-in"]);
+            this.router_.navigate(["/auth/sign-in"]);
         });
     };
 

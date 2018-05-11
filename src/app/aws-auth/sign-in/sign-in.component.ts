@@ -51,11 +51,4 @@ export class SignInComponent implements OnInit {
     navigateToChangePassword() {
         this.router_.navigate(["../change"], { relativeTo: this.activated_route_ });
     };
-
-    navigateToHostedUI() {
-        const { domain, redirectSignIn, redirectSignOut, responseType} = authConfig.Auth.oauth;
-        const clientId = authConfig.Auth.userPoolWebClientId;
-        const url = 'https://' + domain + '/login?redirect_uri=' + redirectSignIn + '&response_type=' + responseType + '&client_id=' + clientId;
-        window.location.assign(url);
-    }
 }
