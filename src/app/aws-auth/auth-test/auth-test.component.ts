@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AwsAppSyncService } from "../../aws-appsync/aws-appsync.service";
-import getPostQuery, { GetPostResponse } from "../../graphql/queries/get-post";
-import createPostMutation, { CreatePostResponse } from "../../graphql/mutations/create-post";
+import getQRQuery, { GetQRDataResponse } from "../../graphql/queries/get-qr-data";
+import putQRMutation, { PutQRDataResponse} from "../../graphql/mutations/put-qr-data";
 import { AwsAuthService } from '../aws-auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from 'aws-amplify';
@@ -22,8 +22,7 @@ export class AuthTestComponent implements OnInit {
 
     qr_data_form_group: FormGroup;
 
-    get_response: GetPostResponse;
-    post_response: object;
+    get_response: GetQRDataResponse;
 
     image_sub: Subscription;
     image_data_url: string;
@@ -62,15 +61,15 @@ export class AuthTestComponent implements OnInit {
     };
 
     getPost(id: string) {
-        this.app_sync_.client.watchQuery<GetPostResponse>({
-            query: getPostQuery,
-            variables: {
-                id
-            }
-        })
-        .subscribe(({ data }) => {
-            this.get_response = data;
-        });
+        // this.app_sync_.client.watchQuery<GetPostResponse>({
+        //     query: getPostQuery,
+        //     variables: {
+        //         id
+        //     }
+        // })
+        // .subscribe(({ data }) => {
+        //     this.get_response = data;
+        // });
 
         // this.apollo_service_.client.watchQuery<GetPostResponse>({
         //     query: getPostQuery,
@@ -94,24 +93,24 @@ export class AuthTestComponent implements OnInit {
         }
     };
 
-    createData(name: string) {
-        // this.app_sync_.client.mutate<CreatePostResponse>({
-        //     mutation: createPostMutation,           
-        //     variables: {
-        //         id,
-        //         title
-        //     }
-        //     // optimisticResponse: {
-        //     //     createPost: {
-        //     //         __typename: "Post",
-        //     //         title
-        //     //     }
-        //     // },
-        //     // fetchPolicy: "no-cache"
-        // })
-        // .then(({data}) => {
-        //     this.post_response = data;
-        // });
+    createData(name: string, image_url: string) {
+        this.app_sync_.client.mutate<PutQRDataResponse>({
+            mutation: putQRMutation,           
+            variables: {
+                name,
+                image: image_url
+            }
+            // optimisticResponse: {
+            //     createPost: {
+            //         __typename: "Post",
+            //         title
+            //     }
+            // },
+            // fetchPolicy: "no-cache"
+        })
+        .then(({data}) => {
+            console.log(data);
+        });
         // this.apollo_service_.client.mutate<CreatePostResponse>({
         //     mutation: createPostMutation,
         //     variables: {
@@ -129,6 +128,12 @@ export class AuthTestComponent implements OnInit {
         let file = values.file[0];
         if (file) {
             await this.uploadImage(file);
+        }
+        try {
+            await this.createData(values.name, file.name);
+        }
+        catch (e) {
+            console.log(`mutation error: ${JSON.stringify(e)}.`)
         }
     };
 

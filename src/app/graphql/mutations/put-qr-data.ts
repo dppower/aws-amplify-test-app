@@ -1,11 +1,9 @@
 
 import gql from "graphql-tag";
 
-export interface putQRDataResponse {
+export interface PutQRDataResponse {
     putQRData: {
         id: string;
-        name: string;
-        image: string;
     }
 }
 
