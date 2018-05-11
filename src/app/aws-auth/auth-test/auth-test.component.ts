@@ -6,7 +6,10 @@ import createPostMutation, { CreatePostResponse } from "../../graphql/mutations/
 import { AwsAuthService } from '../aws-auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from 'aws-amplify';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from "rxjs/Subscription";
+import { map, switchMap, filter } from "rxjs/operators";
+import { fromEvent } from "rxjs/observable/fromEvent";
 
 @Component({
     selector: 'auth-test',
@@ -22,20 +25,39 @@ export class AuthTestComponent implements OnInit {
     get_response: GetPostResponse;
     post_response: object;
 
+    image_sub: Subscription;
+    image_data_url: string;
+
     constructor(
         private auth_service_: AwsAuthService, private app_sync_: AwsAppSyncService, 
         private router_: Router, private activated_route_: ActivatedRoute
     ) { 
-        
+
     };
 
     ngOnInit() {
         this.qr_data_form_group = new FormGroup({
-            name: new FormControl("")
+            name: new FormControl("", [Validators.required]),
+            file: new FormControl()
         });
         
         this.auth_service_.auth.currentAuthenticatedUser().then(user => {
             this.id = user.username;
+        });
+
+        //this.qr_data_form_group.valueChanges.subscribe((value) => console.log(value));
+        this.image_sub = this.qr_data_form_group.get("file").valueChanges.pipe(
+            filter(files => !!files),
+            map((files: FileList) => files[0]),
+            switchMap(file => {
+                const fr = new FileReader();
+                let obs = fromEvent(fr, "load");
+                fr.readAsDataURL(file);
+                return obs;
+            }),
+            map((event: ProgressEvent) => (<any>event.srcElement).result)
+        ).subscribe(result => {
+            this.image_data_url = result;
         });
     };
 
@@ -61,10 +83,15 @@ export class AuthTestComponent implements OnInit {
         // });
     };
 
-    uploadImage() {
-        Storage.put('test.txt', 'Hello')
-            .then (result => console.log(result))
-            .catch(err => console.log(err));
+    async uploadImage(file: File) {
+        try {     
+            await Storage.put(file.name, file, {
+                contentType: file.type
+            });
+        }
+        catch (e) {
+            console.log(`Image upload error: ${JSON.stringify(e)}.`);
+        }
     };
 
     createData(name: string) {
@@ -96,8 +123,13 @@ export class AuthTestComponent implements OnInit {
         // });
     };
 
-    submitData() {
-
+    async submitData() {
+        let values = this.qr_data_form_group.value;
+        console.log(values);
+        let file = values.file[0];
+        if (file) {
+            await this.uploadImage(file);
+        }
     };
 
     signOut() {

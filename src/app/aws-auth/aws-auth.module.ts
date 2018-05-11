@@ -12,6 +12,7 @@ import { RegisterDetailsComponent } from './sign-up/register-details.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { ForgotPasswordComponent } from './password-reset/forgot-password.component';
 import { ChangePasswordComponent } from './password-reset/change-password.component';
+import { FileInputComponent } from './file-input/file-input.component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { ChangePasswordComponent } from './password-reset/change-password.compon
     ],
     declarations: [
         SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent,
-        RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent
+        RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent,
+        FileInputComponent
     ],
     providers: [AwsAuthService]
 })

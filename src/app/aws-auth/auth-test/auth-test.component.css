@@ -2,3 +2,8 @@ form {
     display: flex;
     flex-flow: column;
 }
+
+img {
+    width: 150px;
+    height: 150px;
+}

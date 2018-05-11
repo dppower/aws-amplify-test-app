@@ -2,8 +2,8 @@
 <form [formGroup]="qr_data_form_group" (ngSubmit)="submitData()">
     <label for="name-input">Name:</label>
     <input id="name-input" formControlName="name">
-    <input type="file" accept="image/png,image/jpeg">
-    <button type="button" (click)="uploadImage()">Upload</button>
-    <button type="submit">Submit</button>
+    <file-input formControlName="file"></file-input>
+    <img *ngIf="image_data_url as image" [src]="image">
+    <button type="submit" [disabled]="!qr_data_form_group.valid">Submit</button>
 </form>
 <button (click)="signOut()">Sign Out</button>
