@@ -1,9 +1,43 @@
+:host {
+    display: flex;
+    flex-flow: row;
+    margin-left: 20px;
+    margin-top: 16px;
+}
+
+p {
+    display: block;
+    width: 120px;
+}
+
 form {
     display: flex;
     flex-flow: column;
+    width: 400px;
 }
 
 img {
     width: 150px;
     height: 150px;
+}
+
+#menu-buttons {
+    display: flex;
+    flex-flow: column;
+    margin-top: 20px;
+    width: 240px;
+}
+
+div#menu-buttons button {
+    width: 100%;
+    margin-top: 16px;
+    margin-left: 12px;
+}
+
+form button {
+    margin-top: 16px;
+}
+
+:not(form).ng-invalid {
+    border: 2px solid red;
 }

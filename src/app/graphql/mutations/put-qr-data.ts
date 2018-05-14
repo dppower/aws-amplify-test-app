@@ -8,8 +8,8 @@ export interface PutQRDataResponse {
 }
 
 export default gql`
-    mutation putQRData($name: String!, $image: String!) {
-        putQRData(data: { name: $name, image: $image }) {
+    mutation putQRData($values: QRInput!) {
+        putQRData(data: $values) {
             id
         }
     }

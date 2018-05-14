@@ -1,9 +1,41 @@
-<p>Auth-test works!</p>
+<p>Enter Details</p>
 <form [formGroup]="qr_data_form_group" (ngSubmit)="submitData()">
     <label for="name-input">Name:</label>
     <input id="name-input" formControlName="name">
-    <file-input formControlName="file"></file-input>
+    <label for="position-input">Position:</label>
+    <input id="position-input" formControlName="position">
+    <label for="phone-input">Phone:</label>
+    <input id="phone-input" formControlName="phone">
+    <label for="mobile-input">Mobile:</label>
+    <input id="mobile-input" formControlName="mobile">
+    <label for="fax-input">Fax:</label>
+    <input id="fax-input" formControlName="fax">
+    <label for="email-input">Email:</label>
+    <input id="email-input" formControlName="email">
+    <label for="cname-input">Company Name:</label>
+    <input id="cname-input" formControlName="company_name">
+    <label for="cweb-input">Company Website:</label>
+    <input id="cweb-input" formControlName="company_website">
+    <label for="cadd1-input">Company Address 1:</label>
+    <input id="cadd1-input" formControlName="company_address_1">
+    <label for="cadd2-input">Company Address 2:</label>
+    <input id="cadd2-input" formControlName="company_address_2">
+    <label for="city-input">City:</label>
+    <input id="city-input" formControlName="company_city">
+    <label for="state-input">State:</label>
+    <input id="state-input" formControlName="company_state">
+    <label for="pin-input">Pin:</label>
+    <input id="pin-input" formControlName="pin">
+    <label for="image-input">Image:</label>
+    <file-input id="image-input" formControlName="image"></file-input>
     <img *ngIf="image_data_url as image" [src]="image">
     <button type="submit" [disabled]="!qr_data_form_group.valid">Submit</button>
 </form>
-<button (click)="signOut()">Sign Out</button>
+<div id="menu-buttons">
+    <button (click)="generateQRCode()">Generate QRCode</button>
+    <button (click)="displayQRCode()">Display QRCode</button>
+    <img *ngIf="qr_code_url as image" [src]="image">
+    <button (click)="emailQRCode()">Email QRCode</button>
+    <button (click)="signOut()">Sign Out</button>
+</div>
+
