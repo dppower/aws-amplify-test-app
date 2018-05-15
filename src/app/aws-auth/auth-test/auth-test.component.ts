@@ -69,7 +69,7 @@ export class AuthTestComponent implements OnInit {
                 fr.readAsDataURL(file);
                 return obs;
             }),
-            map((event: ProgressEvent) => (<any>event.srcElement).result)
+            map((event: ProgressEvent) => (<any>event.target).result)
         ).subscribe(result => {
             this.image_data_url = result;
         });
@@ -103,12 +103,8 @@ export class AuthTestComponent implements OnInit {
 
     async displayQRCode() {
         try {     
-            let response: any = await Storage.get("qrcode.json", {
-                download: true,
-                level: "private"
-            });
-            let data = JSON.parse(response.Body.toString('utf8'));
-            this.qr_code_url = data.code;
+            let response: any = await Storage.get("qrcode.png");
+            this.qr_code_url = response;
         }
         catch (e) {
             console.log(`qrCode display error: ${JSON.stringify(e)}.`);
