@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Router } from "@angular/router";
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http"
-
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AwsAuthModule } from "./aws-auth/aws-auth.module";
 import { AwsAppSyncModule } from "./aws-appsync/aws-appsync.module";
 
@@ -30,6 +30,7 @@ import { AppComponent } from './app.component';
                 onSameUrlNavigation: "reload"
             }
         ),
+        BrowserAnimationsModule,
         AwsAuthModule,
         AwsAppSyncModule
         //ApolloClientModule

@@ -14,6 +14,7 @@ import { ForgotPasswordComponent } from './password-reset/forgot-password.compon
 import { ChangePasswordComponent } from './password-reset/change-password.component';
 import { FileInputComponent } from './file-input/file-input.component';
 import { MatTooltipModule } from "@angular/material";
+import { InputTooltipComponent } from './input-tooltip/input-tooltip.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import { MatTooltipModule } from "@angular/material";
     declarations: [
         SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent,
         RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent,
-        FileInputComponent
+        FileInputComponent, InputTooltipComponent
     ],
     providers: [AwsAuthService]
 })
