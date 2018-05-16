@@ -13,12 +13,14 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
 import { ForgotPasswordComponent } from './password-reset/forgot-password.component';
 import { ChangePasswordComponent } from './password-reset/change-password.component';
 import { FileInputComponent } from './file-input/file-input.component';
+import { MatTooltipModule } from "@angular/material";
 
 @NgModule({
     imports: [
         CommonModule,
         AwsAuthRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTooltipModule
     ],
     declarations: [
         SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent,

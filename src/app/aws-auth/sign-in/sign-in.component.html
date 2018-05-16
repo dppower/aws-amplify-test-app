@@ -1,12 +1,12 @@
-<div>
-    <label for="email-input">Email:</label>
-    <input id="email-input" formControlName="email">
-</div>
-<div>
-    <label for="password-input">Password:</label>
-    <input id="password-input" type="password" formControlName="password">
-</div>
-<button type="submit" [disabled]="!form_group.valid">Sign In</button>
-<button type="button" (click)="navigateToSignUp()">Create New Account</button>
-<button type="button" (click)="navigateToForgotPassword()">Forgot Password</button>
-<button type="button" (click)="navigateToChangePassword()">Change Password</button>
+<!-- Email -->
+<label for="email-input">Email:</label>
+<input id="email-input" class="form-control" formControlName="email" spellcheck="false">
+<!-- Password -->
+<label for="password-input">Password:</label>
+<input id="password-input" class="form-control" type="password" formControlName="password">
+<!-- Submit -->
+<button type="submit" class="btn btn-primary" [disabled]="!form_group.valid">Sign In</button>
+<!-- Navigation -->
+<button type="button" class="btn btn-link" (click)="navigateToSignUp()">Create New Account</button>
+<button type="button" class="btn btn-link" (click)="navigateToForgotPassword()">Forgot Password</button>
+<button type="button" class="btn btn-link" (click)="navigateToChangePassword()">Change Password</button>

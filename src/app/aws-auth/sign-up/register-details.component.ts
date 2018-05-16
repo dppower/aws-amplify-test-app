@@ -59,6 +59,10 @@ export class RegisterDetailsComponent implements OnInit, OnDestroy {
             });
     };
 
+    navigate(route: string) {
+        this.router_.navigate([`../${route}`], { relativeTo: this.activated_route_ });
+    };
+
     ngOnDestroy() {
         this.form_group.removeControl("confirm_password");
     };

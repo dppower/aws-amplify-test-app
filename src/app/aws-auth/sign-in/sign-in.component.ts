@@ -32,10 +32,12 @@ export class SignInComponent implements OnInit {
         let details = this.form_group.value;
         this.auth_service_.signIn(details.email, details.password)
         .then(() => {
-            console.log("Signed user into cognito pools.");
             this.router_.navigate(["/auth-test"]);
         })
         .catch(err => {
+            if (err.code === "UserNotFoundException" || err.code === "NotAuthorizedException") {
+                
+            }
             console.log(`sign in err: ${JSON.stringify(err)}.`);
         });
     };

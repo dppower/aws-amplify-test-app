@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    flex-flow: column;   
+    align-items: center;
+}
+
+button {
+    margin-top: 20px;
+    width: 50%;
+}
+
+input {
+    width: 100%;
+}
+
+label, p {
+    margin-top: 4px;
+    font-size: 0.8em;
+}
+
+label {
+    align-self: flex-start;
+}

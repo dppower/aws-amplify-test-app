@@ -1,13 +1,14 @@
-<div>
-    <label for="email-input">Email:</label>
-    <input id="email-input" formControlName="email">
-</div>
-<div>
-    <label for="password-input">Password:</label>
-    <input id="password-input" type="password" formControlName="password">
-</div>
-<div>
-    <label for="confirm-password-input">Confirm Password:</label>
-    <input id="confirm-password-input" type="password" formControlName="confirm_password">
-</div>
-<button type="submit" [disabled]="!form_group.valid">Sign Up!</button>
+<!--  -->
+<label for="email-input">Email:</label>
+<input id="email-input" class="form-control" formControlName="email" spellcheck="false">
+<!-- Password -->
+<label for="password-input">Password:</label>
+<input id="password-input" type="password" class="form-control" formControlName="password">
+<!-- Confirm Password -->
+<label for="confirm-password-input">Confirm Password:</label>
+<input id="confirm-password-input" class="form-control" type="password" formControlName="confirm_password">
+<!-- Submit Form -->
+<button type="submit" class="btn btn-primary" [disabled]="!form_group.valid">Register</button>
+<!-- Navigation -->
+<button type="button" class="btn btn-link" (click)="navigate('sign-in')">Already Registered? Sign In</button>
+<button type="button" class="btn btn-link" (click)="navigate('confirm')">Confirm Email</button>

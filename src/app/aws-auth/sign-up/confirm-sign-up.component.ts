@@ -26,7 +26,7 @@ export class ConfirmSignUpComponent implements OnInit {
     ) { };
 
     areInputsValid() {
-        return this.form_group.get("email").valid && this.form_group.get("email_verification");
+        return this.form_group.get("email").valid && this.form_group.get("email_verification").valid;
     };
 
     ngOnInit() {
