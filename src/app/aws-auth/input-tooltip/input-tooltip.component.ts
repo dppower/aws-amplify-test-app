@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective, FormGroup, FormControl } from "@angular/forms";
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from "@angular/material";
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { filter } from "rxjs/operators";
 
 export const CustomTooltipDefaults: MatTooltipDefaultOptions = {

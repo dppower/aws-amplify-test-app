@@ -7,9 +7,8 @@ import { AwsAuthService } from '../aws-auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from 'aws-amplify';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subscription } from "rxjs/Subscription";
+import { Subscription, fromEvent } from "rxjs";
 import { map, switchMap, filter } from "rxjs/operators";
-import { fromEvent } from "rxjs/observable/fromEvent";
 import generateQrCode, { GenerateQRCodeResponse } from '../../graphql/queries/generate-qr-code';
 import emailQrCode, { EmailQRCodeResponse } from '../../graphql/queries/email-qr-code';
 

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { ReplaySubject } from "rxjs/ReplaySubject";
+import { ReplaySubject } from "rxjs";
 
 import Amplify, { Auth, AuthClass } from "aws-amplify";
 import auth_config from "../../aws-auth-config";

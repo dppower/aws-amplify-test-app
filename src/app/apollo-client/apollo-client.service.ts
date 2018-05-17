@@ -7,7 +7,7 @@ import { ApolloLink, concat } from 'apollo-link';
 import { HttpHeaders } from '@angular/common/http';
 import { AwsAuthService } from '../aws-auth/aws-auth.service';
 import { CachePersistor } from "apollo-cache-persist";
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class ApolloClientService {

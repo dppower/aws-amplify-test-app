@@ -15,13 +15,15 @@ import { ChangePasswordComponent } from './password-reset/change-password.compon
 import { FileInputComponent } from './file-input/file-input.component';
 import { MatTooltipModule } from "@angular/material";
 import { InputTooltipComponent } from './input-tooltip/input-tooltip.component';
+//import { AwsAppSyncModule } from "../aws-appsync/aws-appsync.module";
 
 @NgModule({
     imports: [
         CommonModule,
         AwsAuthRoutingModule,
         ReactiveFormsModule,
-        MatTooltipModule
+        MatTooltipModule 
+        //AwsAppSyncModule
     ],
     declarations: [
         SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent,
