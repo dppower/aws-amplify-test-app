@@ -28,9 +28,13 @@ export class SignInComponent implements OnInit {
         this.form_group = this.parent_form_directive_.form;
     };
 
+    ngAfterViewInit() {
+        setTimeout(() => this.form_group.updateValueAndValidity(), 0);
+    };
+
     next() {
         let details = this.form_group.value;
-        this.auth_service_.signIn(details.email, details.password)
+        this.auth_service_.signIn(details["Email"], details["Password"])
         .then(() => {
             this.router_.navigate(["/auth-test"]);
         })

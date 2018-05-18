@@ -26,21 +26,25 @@ export class ConfirmSignUpComponent implements OnInit {
     ) { };
 
     areInputsValid() {
-        return this.form_group.get("email").valid && this.form_group.get("email_verification").valid;
+        return this.form_group.get("Email").valid && this.form_group.get("Verify Code").valid;
     };
 
     ngOnInit() {
         this.form_group = this.parent_form_directive_.form;
 
-        this.form_group.addControl("email_verification", 
+        this.form_group.addControl("Verify Code", 
             new FormControl("", [Validators.required, codeValidator])
-        );
+        );       
+    };
+
+    ngAfterViewInit() {
+        setTimeout(() => this.form_group.updateValueAndValidity(), 0);
     };
 
     next() {
         let details = this.form_group.value;
         console.log(`confirm details: ${JSON.stringify(details)}.`);
-        this.auth_service_.confirmSignUp(details.email, details.email_verification)
+        this.auth_service_.confirmSignUp(details["Email"], details["Verify Code"])
             .then(() => {
                 console.log(`confirmed user sign up.`);
                 this.router_.navigate(["../sign-in"], { relativeTo: this.activated_route_ });
@@ -51,6 +55,6 @@ export class ConfirmSignUpComponent implements OnInit {
     };
 
     ngOnDestroy() {
-        this.form_group.removeControl("email_verification");
+        this.form_group.removeControl("Verify Code");
     };
 }

@@ -17,6 +17,8 @@ import { MatTooltipModule } from "@angular/material";
 import { InputTooltipComponent } from './input-tooltip/input-tooltip.component';
 //import { AwsAppSyncModule } from "../aws-appsync/aws-appsync.module";
 import { MatIconModule } from "@angular/material";
+import { ErrorBannerComponent } from './input-tooltip/error-banner.component';
+import { OverlayModule } from "@angular/cdk/overlay";
 
 @NgModule({
     imports: [
@@ -24,14 +26,16 @@ import { MatIconModule } from "@angular/material";
         AwsAuthRoutingModule,
         ReactiveFormsModule,
         MatTooltipModule,
-        MatIconModule
+        MatIconModule,
+        OverlayModule
         //AwsAppSyncModule
     ],
     declarations: [
         SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent,
         RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent,
-        FileInputComponent, InputTooltipComponent
+        FileInputComponent, InputTooltipComponent, ErrorBannerComponent
     ],
+    entryComponents: [ErrorBannerComponent],
     providers: [AwsAuthService]
 })
 export class AwsAuthModule { }

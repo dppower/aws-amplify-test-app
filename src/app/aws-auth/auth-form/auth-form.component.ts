@@ -1,9 +1,12 @@
-import { Component, OnInit, ComponentRef } from '@angular/core';
+import { Component, OnInit, ComponentRef, Injector, ViewContainerRef } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from "@angular/forms";
 import { AwsAuthService } from "../aws-auth.service";
 import { Router } from "@angular/router";
 import { passwordValidator } from '../validators/password-validator';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { ErrorBannerComponent } from '../input-tooltip/error-banner.component';
 
 @Component({
     selector: 'auth-form',
@@ -16,13 +19,18 @@ export class AuthFormComponent implements OnInit {
 
     private active_component_: { next: () => void };
 
-    constructor(private auth_service_: AwsAuthService, private router_: Router) { };
+    private overlay_ref_: OverlayRef;
+
+    constructor(private auth_service_: AwsAuthService, private router_: Router, 
+        private cdk_overlay_: Overlay, private injector_: Injector, private view_container_: ViewContainerRef
+    ) { };
 
     ngOnInit() {
         this.form_group = new FormGroup({
-            email: new FormControl("", [Validators.required, Validators.email]),
-            password: new FormControl("", [Validators.required, Validators.minLength(8), passwordValidator]),
+            "Email": new FormControl("", [Validators.required, Validators.email]),
+            "Password": new FormControl("", [Validators.required, Validators.minLength(8), passwordValidator]),
         });
+        this.createOverlay();
     };
 
     setActive(component) {
@@ -32,4 +40,16 @@ export class AuthFormComponent implements OnInit {
     onSubmit() {
         this.active_component_.next();
     };
+
+    createOverlay() {
+        this.overlay_ref_ = this.cdk_overlay_.create({
+            width: "40%",
+            height: "25%",
+            hasBackdrop: false,
+            positionStrategy: this.cdk_overlay_.position().global().centerHorizontally()           
+        });
+        let injector = Injector.create([{provide: FormGroup, useValue: this.form_group}]);
+        const errorBannerOverlay = new ComponentPortal(ErrorBannerComponent, this.view_container_, injector);
+        this.overlay_ref_.attach(errorBannerOverlay);
+    }
 }

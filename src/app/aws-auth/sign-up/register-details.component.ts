@@ -27,7 +27,14 @@ export class RegisterDetailsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.form_group = this.parent_form_directive_.form;
 
-        this.form_group.addControl("confirm_password", new FormControl("", [Validators.required, this.confirmPasswordValidation()]));
+        this.form_group.addControl(
+            "Confirm Password", 
+            new FormControl("", [Validators.required, this.confirmPasswordValidation()])
+        );
+    };
+
+    ngAfterViewInit() {
+        setTimeout(() => this.form_group.updateValueAndValidity(), 0);
     };
 
     confirmPasswordValidation(): ValidatorFn {
@@ -36,7 +43,7 @@ export class RegisterDetailsComponent implements OnInit, OnDestroy {
 
             let confirm = control.value;
 
-            let password = this.form_group.get("password").value;
+            let password = this.form_group.get("Password").value;
 
             if (confirm !== password) {
                 errors["confirm"] = "Passwords do not match";
@@ -47,8 +54,8 @@ export class RegisterDetailsComponent implements OnInit, OnDestroy {
     };
 
     next() {
-        let details: AuthDetails = this.form_group.value;
-        this.auth_service_.signUp(details.email, details.password)
+        let details = this.form_group.value;
+        this.auth_service_.signUp(details["Email"], details["Password"])
             .then(() => {
                 console.log("Added user to cognito pools.");
                 //this.form_group.reset();
@@ -64,6 +71,6 @@ export class RegisterDetailsComponent implements OnInit, OnDestroy {
     };
 
     ngOnDestroy() {
-        this.form_group.removeControl("confirm_password");
+        this.form_group.removeControl("Confirm Password");
     };
 }

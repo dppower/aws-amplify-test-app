@@ -1,0 +1,7 @@
+<div *ngIf="invalid_controls.length > 0">
+    <p>These controls are invalid:</p>
+    <ul>
+        <li *ngFor="let name of invalid_controls">{{name}}</li>
+    </ul>
+</div>
+

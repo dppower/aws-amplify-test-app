@@ -1,0 +1,14 @@
+:host {
+    width: 100%;
+    height: calc(100% - 40px);
+    background-color: beige;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}

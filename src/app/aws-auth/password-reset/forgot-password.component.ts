@@ -6,6 +6,7 @@ import {
 import { Router, ActivatedRoute } from "@angular/router";
 import { AwsAuthService } from '../aws-auth.service';
 import { codeValidator } from '../validators/code-validator';
+import { passwordValidator } from "../validators/password-validator";
 
 @Component({
     selector: 'forgot-password',
@@ -27,17 +28,27 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.form_group = this.parent_form_directive_.form;
 
-        this.form_group.get("password").reset();
-        this.form_group.addControl("confirm_code",
+        this.form_group.get("Password").reset();
+        this.form_group.addControl("Reset Code",
             new FormControl("", [Validators.required, codeValidator])
         );
+
+        this.form_group.addControl("New Password",
+            new FormControl("", [Validators.required, passwordValidator])
+        );
+    };
+
+    ngAfterViewInit() {
+        setTimeout(() => this.form_group.updateValueAndValidity(), 0);
     };
 
     next() {
         let details = this.form_group.value;
-        this.auth_service_.auth.forgotPasswordSubmit(details.email, details.confirm_code, details.password)
+
+        this.auth_service_.auth.forgotPasswordSubmit(details["Email"], details["Reset Code"], details["Password"])
             .then(() => {
                 console.log("Reset password.");
+                this.form_group.get("Password").setValue(details["New Password"]);
                 this.router_.navigate(["../sign-in"], { relativeTo: this.activated_route_ });
             })
             .catch(err => {
@@ -46,15 +57,16 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     };
 
     isValidEmail() {
-        return this.form_group.get("email").valid;
+        return this.form_group.get("Email").valid;
     };
 
     sendConfirmCode() {
-        let email = this.form_group.value.email;
+        let email = this.form_group.value["Email"];
         this.auth_service_.auth.forgotPassword(email).then(() => { }).catch(err => { console.log(err) });
     };
 
     ngOnDestroy() {
-        this.form_group.removeControl("confirm_code");
+        this.form_group.removeControl("Reset Code");
+        this.form_group.removeControl("New Password");
     }
 }
