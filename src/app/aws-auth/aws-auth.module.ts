@@ -16,13 +16,15 @@ import { FileInputComponent } from './file-input/file-input.component';
 import { MatTooltipModule } from "@angular/material";
 import { InputTooltipComponent } from './input-tooltip/input-tooltip.component';
 //import { AwsAppSyncModule } from "../aws-appsync/aws-appsync.module";
+import { MatIconModule } from "@angular/material";
 
 @NgModule({
     imports: [
         CommonModule,
         AwsAuthRoutingModule,
         ReactiveFormsModule,
-        MatTooltipModule 
+        MatTooltipModule,
+        MatIconModule
         //AwsAppSyncModule
     ],
     declarations: [

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective, FormGroup, FormControl } from "@angular/forms";
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from "@angular/material";
+import { ComponentPortal } from "@angular/cdk/portal";
 import { Subscription } from 'rxjs';
 import { filter } from "rxjs/operators";
 
@@ -43,10 +44,10 @@ export class InputTooltipComponent implements OnInit {
         let valid = control.valid;
         if (!valid) {
             let errors = control.errors;
-            // for (let error in errors) {
-            //     message += errors[error];
-            // }
-            message = JSON.stringify(errors, null, 2);
+            for (let error in errors) {
+                message += errors[error] + "\n";
+            }
+            //message = JSON.stringify(errors, null, 2);
         }
         return message;
     }
