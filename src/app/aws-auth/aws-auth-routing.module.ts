@@ -12,11 +12,12 @@ import { ConfirmSignUpComponent } from './sign-up/confirm-sign-up.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { ForgotPasswordComponent } from './password-reset/forgot-password.component';
 import { ChangePasswordComponent } from './password-reset/change-password.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 const routes: Routes = [   
     {
         path: "auth-test",
-        component: AuthTestComponent,
+        component: PaymentFormComponent,
         canActivate: [AuthGuardService]
     },
     {

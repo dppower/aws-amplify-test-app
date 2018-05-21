@@ -19,6 +19,8 @@ import { InputTooltipComponent } from './input-tooltip/input-tooltip.component';
 import { MatIconModule } from "@angular/material";
 import { ErrorBannerComponent } from './input-tooltip/error-banner.component';
 import { OverlayModule } from "@angular/cdk/overlay";
+import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { CardInputComponent } from './payment-form/card-input.component';
 
 @NgModule({
     imports: [
@@ -33,7 +35,7 @@ import { OverlayModule } from "@angular/cdk/overlay";
     declarations: [
         SignInComponent, ConfirmSignInComponent, ConfirmSignUpComponent, AuthTestComponent,
         RegisterDetailsComponent, AuthFormComponent, ForgotPasswordComponent, ChangePasswordComponent,
-        FileInputComponent, InputTooltipComponent, ErrorBannerComponent
+        FileInputComponent, InputTooltipComponent, ErrorBannerComponent, PaymentFormComponent, CardInputComponent
     ],
     entryComponents: [ErrorBannerComponent],
     providers: [AwsAuthService]
