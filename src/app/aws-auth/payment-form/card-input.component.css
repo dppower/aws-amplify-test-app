@@ -1,3 +1,7 @@
+:host.ng-invalid div {
+    border-color: rgb(255, 45, 45);
+}
+
 .stripe {
     display: block;
     width: 100%;
@@ -20,10 +24,11 @@
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
 
-.stripe-invalid {
-    border-color: #fa755a;
-}
-  
 .stripe-autofill {
     background-color: #fefde5 !important;
+}
+
+label {
+    margin-top: 4px;
+    font-size: 0.8em;
 }

@@ -31,7 +31,7 @@ interface Stripe {
     /** Creates a token from an element and other elements,
      *  with optional data collected such cardholder name
      * */
-    createToken: (element: Stripe.Element | "bank_account", data?: object) => Promise<Stripe.Token>;
+    createToken: (element: Stripe.Element | "bank_account", data?: object) => Promise<{ token: Stripe.Token, error: any}>;
     createSource: () => any;
     retrieveSource: () => any;
     paymentRequest: () => any;

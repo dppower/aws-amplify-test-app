@@ -1,12 +1,10 @@
-<form [formGroup]="form_group">
+<form [formGroup]="form_group" (ngSubmit)="onSubmit()">
     <label for="card-name">Name:</label>
-    <input id="card-name" class="form-control" type="text" formControlName="Name">
-    <!-- <label for="card-number">Number:</label>
-    <input id="card-number" formControlName="Number">
-    <label for="card-expiry">Expiry:</label>
-    <input id="card-expiry" formControlName="Expiry"> -->
+    <input id="card-name" class="form-control" type="text" formControlName="Name"/>
     <card-input formControlName="Number" label="Number" type="cardNumber"></card-input>
     <card-input formControlName="Expiry" label="Expiry" type="cardExpiry"></card-input>
     <card-input formControlName="CVC" label="CVC" type="cardCvc"></card-input>
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary" [disabled]="isButtonDisabled()">Pay</button>
 </form>
 

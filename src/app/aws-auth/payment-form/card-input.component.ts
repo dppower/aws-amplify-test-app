@@ -22,6 +22,10 @@ interface OnChangeEvent {
 })
 export class CardInputComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
 
+    get element() {
+        return this.stripe_element_;
+    }
+    
     @ViewChild("element") input: ElementRef;
 
     @Input("label") label: string;

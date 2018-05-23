@@ -13,3 +13,18 @@ form {
     min-width: 240px;
     max-width: 400px;
 }
+
+button {
+    margin-top: 20px;
+    align-self: center;
+    width: 60%;
+}
+
+label {
+    margin-top: 4px;
+    font-size: 0.8em;
+}
+
+input.ng-invalid {
+    border-color: rgb(255, 45, 45);
+}
