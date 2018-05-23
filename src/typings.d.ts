@@ -24,6 +24,32 @@ declare namespace Stripe {
     interface Elements {
         create: (type: ElementType, options?: object) => Element;
     }
+
+    interface PaymentRequestOptions {
+        country: string;
+        currency: string;
+        total: {
+            amount: number;
+            label: string;
+            pending?: boolean;
+        },
+        displayItems?: {
+            amount: number;
+            label: string;
+            pending?: boolean;
+        }[],
+        requestPayerName?: boolean;
+        requestPayerEmail?: boolean;
+        requestPayerPhone?: boolean;
+        requestShipping?: boolean;
+    }
+
+    interface PaymentRequest {
+        canMakePayment(): Promise<any>;
+        show(): void;
+        update(): void;
+        on(event: string, handler: (error, info) => void);
+    }
 }
 
 interface Stripe {
@@ -34,7 +60,7 @@ interface Stripe {
     createToken: (element: Stripe.Element | "bank_account", data?: object) => Promise<{ token: Stripe.Token, error: any}>;
     createSource: () => any;
     retrieveSource: () => any;
-    paymentRequest: () => any;
+    paymentRequest: (options: Stripe.PaymentRequestOptions) => Stripe.PaymentRequest;
 }
 
 declare var Stripe: (key: string) => Stripe;
