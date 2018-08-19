@@ -1,13 +1,13 @@
 <!--  -->
 <label for="email-input">Email:</label>
-<input id="email-input" class="form-control" formControlName="Email" spellcheck="false">
+<input id="email-input" class="form-control" formControlName="Email" spellcheck="false" autocomplete="email">
 <!-- Password -->
 <label for="password-input">Password:</label>
-<input id="password-input" type="password" class="form-control" formControlName="Password">
+<input id="password-input" type="password" class="form-control" formControlName="Password" autocomplete="current-password">
 <!-- <input-tooltip label="Password" name="Password"></input-tooltip> -->
 <!-- Confirm Password -->
 <label for="confirm-password-input">Confirm Password:</label>
-<input id="confirm-password-input" class="form-control" type="password" formControlName="Confirm Password">
+<input id="confirm-password-input" class="form-control" type="password" formControlName="Confirm Password" autocomplete="off">
 <!-- Submit Form -->
 <button type="submit" class="btn btn-primary" [disabled]="!form_group.valid">Register</button>
 <!-- Navigation -->

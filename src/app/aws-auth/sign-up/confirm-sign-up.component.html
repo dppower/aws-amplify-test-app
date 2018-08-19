@@ -1,6 +1,6 @@
 <label for="email-input">Email:</label>
-<input id="email-input" class="form-control" formControlName="Email" spellcheck="false">
+<input id="email-input" class="form-control" formControlName="Email" spellcheck="false" autocomplete="email">
 <label for="email-verification-input">Verify Code:</label>
-<input id="email-verification-input" class="form-control" formControlName="Verify Code">
+<input id="email-verification-input" class="form-control" formControlName="Verify Code" autocomplete="off">
 <p>Enter the 6-digit code that is received by email.</p>
 <button type="submit" class="btn btn-primary" [disabled]="!areInputsValid()">Confirm</button>

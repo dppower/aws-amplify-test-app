@@ -32,6 +32,7 @@ export class ConfirmSignUpComponent implements OnInit {
     ngOnInit() {
         this.form_group = this.parent_form_directive_.form;
 
+        this.form_group.get("Password").disable();
         this.form_group.addControl("Verify Code", 
             new FormControl("", [Validators.required, codeValidator])
         );       
