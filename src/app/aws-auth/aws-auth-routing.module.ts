@@ -17,7 +17,7 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 const routes: Routes = [   
     {
         path: "auth-test",
-        component: PaymentFormComponent,
+        component: AuthTestComponent,
         canActivate: [AuthGuardService]
     },
     {

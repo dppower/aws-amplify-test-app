@@ -29,7 +29,7 @@
         "apollo-cache-persist": "^0.1.1",
         "apollo-client": "^2.3.1",
         "apollo-link": "^1.2.2",
-        "aws-amplify": "^0.4.0",
+        "aws-amplify": "^1.0.6",
         "aws-appsync": "^1.0.19",
         "bootstrap": "^4.1.0",
         "core-js": "^2.4.1",

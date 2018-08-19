@@ -52,4 +52,8 @@ export class AuthFormComponent implements OnInit {
         const errorBannerOverlay = new ComponentPortal(ErrorBannerComponent, this.view_container_, injector);
         this.overlay_ref_.attach(errorBannerOverlay);
     }
+
+    ngOnDestroy() {
+        this.overlay_ref_.dispose();
+    }
 }

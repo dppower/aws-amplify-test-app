@@ -1,14 +1,22 @@
 :host {
     width: 100%;
-    height: calc(100% - 40px);
-    background-color: beige;
     margin-top: 40px;
+}
+
+#invalid-controls-box {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    border: 1px solid red;
+    color: red;  
+    text-align: center;
 }
 
 ul {
     list-style: none;
     padding: 0;
-    text-align: center;
+}
+
+li {
+    margin-top: 8px;
 }

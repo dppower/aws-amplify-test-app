@@ -1,16 +1,16 @@
-import { AuthOptions } from "aws-amplify/lib/Auth/types";
-import { StorageOptions } from "aws-amplify/lib/Storage/types";
+import { AuthOptions } from "@aws-amplify/auth/lib/types";
+import { StorageOptions } from "@aws-amplify/storage/lib/types";
 
 export default {
     Auth: (<AuthOptions>{
         // REQUIRED - Amazon Cognito Identity Pool ID
-        identityPoolId: "us-east-2:49be39be-102b-454d-828d-6a33c077a90e",
+        identityPoolId: "us-east-2:d02d0d16-cd87-41be-8c93-3c8902279f91",
         // REQUIRED - Amazon Cognito Region
         region: "us-east-2",
         // OPTIONAL - Amazon Cognito User Pool ID
-        userPoolId: "us-east-2_FVBtBPEDZ",
+        userPoolId: "us-east-2_MDfWojA59",
         // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-        userPoolWebClientId: "4ll81btv44f1fuprjd65p3rg0q",
+        userPoolWebClientId: "2m9elbr476rtqnsiinmet951i7",
         // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
         mandatorySignIn: true
     }),

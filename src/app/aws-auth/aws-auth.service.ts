@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { ReplaySubject } from "rxjs";
 
-import Amplify, { Auth, AuthClass } from "aws-amplify";
+import Amplify from "@aws-amplify/core";
+import Auth, { AuthClass } from "@aws-amplify/auth";
 import auth_config from "../../aws-auth-config";
 
 interface AuthState {

@@ -27,7 +27,13 @@ export class ChangePasswordComponent implements OnInit {
 
     ngOnInit() {
         this.form_group = this.parent_form_directive_.form;
+   
+        this.form_group.get("Password").disable();
+        let current_password = this.form_group.get("Password").value || "";
 
+        this.form_group.addControl("Current Password",
+            new FormControl(current_password, [Validators.required, passwordValidator])
+        );
         this.form_group.addControl("New Password",
             new FormControl("", [Validators.required, passwordValidator])
         );
@@ -45,23 +51,27 @@ export class ChangePasswordComponent implements OnInit {
             try {
                 user = await this.auth_service_.auth.currentAuthenticatedUser();
             }
-            catch (e) { }
+            catch (e) { 
+                console.log("No current authenticated user");
+            }
 
             if (!user) {
-                user = await this.auth_service_.auth.signIn(details["Email"], details["Password"]);
+                user = await this.auth_service_.auth.signIn(details["Email"], details["Current Password"]);
             }
-            await this.auth_service_.auth.changePassword(user, details["Password"], details["New Password"]);
+
+            await this.auth_service_.auth.changePassword(user, details["Current Password"], details["New Password"]);
 
             this.form_group.get("Password").setValue(details["New Password"]);
             this.router_.navigate(["../sign-in"], { relativeTo: this.activated_route_ });
         }
         catch (e) {
-            console.log(`change password error: ${JSON.stringify(e)}.`);
+            console.log(`change password error(2): ${JSON.stringify(e)}.`);
         }
     };
 
     ngOnDestroy() {
         this.form_group.removeControl("New Password");
+        this.form_group.removeControl("Current Password");
     }
 
 }

@@ -7,25 +7,18 @@ import { Subscription } from 'rxjs';
     templateUrl: './error-banner.component.html',
     styleUrls: ['./error-banner.component.css']
 })
-export class ErrorBannerComponent implements OnInit, AfterViewInit {
+export class ErrorBannerComponent implements OnInit {
 
     constructor(private form_group_: FormGroup) { };
 
     value_changes_sub_: Subscription;
 
     invalid_controls: string[] = [];
-    //are_invalid_controls: boolean;
 
     ngOnInit() {
         this.value_changes_sub_ = this.form_group_.valueChanges.subscribe(change => {
-            this.updateInvalidControls();
+            setTimeout(() => this.updateInvalidControls(), 0);
         });
-    };
-
-    ngAfterViewInit() {
-        // this.value_changes_sub_ = this.form_group_.valueChanges.subscribe(change => {
-        //     setTimeout(() => this.updateInvalidControls(), 0);
-        // });
     };
 
     updateInvalidControls() {

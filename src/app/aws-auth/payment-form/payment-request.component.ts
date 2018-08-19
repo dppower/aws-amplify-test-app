@@ -20,7 +20,8 @@ export class PaymentRequestComponent implements OnInit {
                 label: "Demo",
                 amount: 500
             }
-        })
+        });
+        
     };
 
     async openPaymentRequest() {

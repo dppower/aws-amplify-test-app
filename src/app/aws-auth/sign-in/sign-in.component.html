@@ -1,10 +1,10 @@
 <!-- Email -->
-<!-- <label for="email-input">Email:</label>
-<input id="email-input" class="form-control" formControlName="email" spellcheck="false"> -->
-<input-tooltip label="Email" name="Email"></input-tooltip>
+<label for="email-input">Email:</label>
+<input id="email-input" class="form-control" formControlName="Email" spellcheck="false" autocomplete="email">
+<!-- <input-tooltip label="Email" name="Email"></input-tooltip> -->
 <!-- Password -->
 <label for="password-input">Password:</label>
-<input id="password-input" class="form-control" type="password" formControlName="Password">
+<input id="password-input" class="form-control" type="password" formControlName="Password" autocomplete="current-password">
 <!-- Submit -->
 <button type="submit" class="btn btn-primary" [disabled]="!form_group.valid">Sign In</button>
 <!-- Navigation -->

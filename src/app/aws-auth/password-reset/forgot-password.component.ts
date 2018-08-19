@@ -28,7 +28,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.form_group = this.parent_form_directive_.form;
 
-        this.form_group.get("Password").reset();
+        this.form_group.get("Password").disable();
         this.form_group.addControl("Reset Code",
             new FormControl("", [Validators.required, codeValidator])
         );
@@ -45,9 +45,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     next() {
         let details = this.form_group.value;
 
-        this.auth_service_.auth.forgotPasswordSubmit(details["Email"], details["Reset Code"], details["Password"])
+        this.auth_service_.auth.forgotPasswordSubmit(details["Email"], details["Reset Code"], details["New Password"])
             .then(() => {
-                console.log("Reset password.");
                 this.form_group.get("Password").setValue(details["New Password"]);
                 this.router_.navigate(["../sign-in"], { relativeTo: this.activated_route_ });
             })

@@ -26,6 +26,7 @@ export class SignInComponent implements OnInit {
 
     ngOnInit() { 
         this.form_group = this.parent_form_directive_.form;
+        this.form_group.controls["Password"].enable();
     };
 
     ngAfterViewInit() {
